@@ -15,8 +15,7 @@ def hw(sentiment_dict, statuses):
 def lines(fp):
     print str(len(fp.readlines()))
 
-def get_sentiment_from_afinn():
-    afinnfile = open("AFINN-111.txt")
+def get_sentiment_from_afinn(afinnfile):
     scores = {} # initialize an empty dictionary
     for line in afinnfile:
         term, score  = line.split("\t")  # The file is tab-delimited. "\t" means "tab character"
@@ -32,7 +31,7 @@ def main():
     sent_file = open(sys.argv[1])
     tweet_file = open(sys.argv[2])
 
-    sentiment_dict = get_sentiment_from_afinn()
+    sentiment_dict = get_sentiment_from_afinn(sent_file)
     text = get_text_from_tweet_file(tweet_file)
 
     hw(sentiment_dict, text)
